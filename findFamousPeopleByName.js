@@ -1,7 +1,4 @@
 function findFamousPeople(client, name, callback) {
-  const query = `SELECT * FROM famous_people
-                 WHERE first_name = $1
-                 OR last_name = $1`;
 
   client.select('*')
   .from('famous_people')
@@ -16,7 +13,18 @@ function findFamousPeople(client, name, callback) {
 
 }
 
+function insertFamousPeople(client, person) {
+
+client('famous_people')
+.insert({first_name: person[0], last_name: person[1], birthdate: (new Date()).toUTCString()})
+.catch(function(error) {
+    console.error(error);
+  });
+
+}
+
 module.exports =
 {
-  findFamousPeople
+  findFamousPeople,
+  insertFamousPeople
 }
