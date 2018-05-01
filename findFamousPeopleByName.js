@@ -3,17 +3,17 @@ function findFamousPeople(client, name, callback) {
                  WHERE first_name = $1
                  OR last_name = $1`;
 
-  client.query(query, [name],
+  client.select('*')
+  .from('famous_people')
+  .where({first_name: `${name}`})
+  .orWhere({last_name: `${name}`})
+  .then(function(result){
+   callback(null, result)
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
 
-   (err, result) => {
-      if (err) {
-        callback(err);
-        return;
-      }
-
-   callback(null, result.rows);
-
- });
 }
 
 module.exports =
