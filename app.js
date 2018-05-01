@@ -24,7 +24,7 @@ var knex = require('knex')({
     knex.destroy();
 });*/
 
-famousPeople.insertFamousPeople(knex, [process.argv[2], process.argv[3]]);
+famousPeople.insertFamousPeople(knex, [process.argv[2], process.argv[3]])
 
 famousPeople.findFamousPeople(knex, process.argv[2],
     (err, result) => {

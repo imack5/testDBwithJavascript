@@ -15,12 +15,12 @@ function findFamousPeople(client, name, callback) {
 
 function insertFamousPeople(client, person) {
 
-client('famous_people')
-.insert({first_name: person[0], last_name: person[1], birthdate: (new Date()).toUTCString()})
-.catch(function(error) {
-    console.error(error);
-  });
-
+  client('famous_people')
+  .insert({first_name: person[0], last_name: person[1], birthdate: (new Date()).toUTCString()})
+  .catch(function(error) {
+      console.error(error);
+    })
+  .then(() => console.log('hi'));
 }
 
 module.exports =
